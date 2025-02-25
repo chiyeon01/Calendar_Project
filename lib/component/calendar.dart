@@ -5,10 +5,12 @@ import 'package:myapp/const/colors.dart';
 class Calendar extends StatelessWidget {
   final OnDaySelected onDaySelected;
   final bool Function(DateTime day) selectedDayPredicate;
+  final DateTime selected;
 
   const Calendar({
     required this.onDaySelected,
     required this.selectedDayPredicate,
+    required this.selected,
     super.key
   });
 
@@ -25,9 +27,10 @@ class Calendar extends StatelessWidget {
 
     return TableCalendar(
       locale: 'ko_KR', /// 한국어로 변경
-      focusedDay: DateTime(2025, 2, 24),
+      focusedDay: selected,
       firstDay: DateTime(1800),
       lastDay: DateTime(3000),
+      currentDay: DateTime.now(),
       onDaySelected: onDaySelected,
       selectedDayPredicate: selectedDayPredicate,
       headerStyle: HeaderStyle(
