@@ -5,6 +5,5 @@ this is Calendar Project
 <br/><br/>
 <p align="center"><img src="https://github.com/user-attachments/assets/4a07f32b-deaa-4a07-98f3-25ae22ed35f2"></p>
 <br/>
-![image](https://github.com/user-attachments/assets/a3247b30-fed7-460b-8cfb-1d9ec658d157)
-<br/>
-![](https://github.com/user-attachments/assets/af581bd3-aac6-40e0-bdab-fadc11d09bba)
+![image](https://github.com/user-attachments/assets/04d5d0eb-ae55-453a-a9dd-770539295792)
+
