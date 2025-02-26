@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/const/colors.dart';
 
-class TodyBanner extends StatelessWidget {
+class TodayBanner extends StatelessWidget {
   final DateTime date;
   final int DateCnt;
 
-  const TodyBanner({
+  const TodayBanner({
     required this.date,
     required this.DateCnt,
     super.key
