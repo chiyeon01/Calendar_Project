@@ -4,6 +4,8 @@ import 'package:myapp/component/today_banner.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:myapp/const/colors.dart';
 import 'package:myapp/component/calendar.dart';
+import 'package:myapp/component/text_field.dart';
+import 'package:myapp/component/schedule_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,11 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
           showModalBottomSheet(
             context: context, 
             builder: (_){
-              return Container(
-                height: 600,
-                color: Colors.white,
-              );
-            }
+              return ScheduleBottomSheet();
+            },
           );
         },
         backgroundColor: primaryColor,
