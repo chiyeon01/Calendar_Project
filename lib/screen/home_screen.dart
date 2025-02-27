@@ -71,20 +71,22 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-                child: ListView(
-                  children:
-                    _events.containsKey(selected)
-                      ? _events[selected]!
-                        .map(
-                          (e) => ScheduleCard(
-                            StartTime: e.startTime,
-                            EndTime: e.endTime,
-                            content: e.content,
-                            color: e.categoryColor,
-                          ),
-                        )
-                        .toList()
-                    : [],
+                child: ListView.separated(
+                  itemCount: _events.containsKey(selected) ? 
+                  _events[selected]!.length : 0,
+                  itemBuilder: (context, index) {
+                    final SelectedData = _events[selected]![index];
+
+                    return ScheduleCard(
+                      StartTime: SelectedData.startTime,
+                      EndTime: SelectedData.endTime,
+                      content: SelectedData.content, 
+                      color: SelectedData.categoryColor,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 8.0);
+                  },
                 ),
               ),
             ),
