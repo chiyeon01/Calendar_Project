@@ -44,13 +44,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
+        onPressed: () async {
+          final Schedule resp = await showModalBottomSheet(
             context: context,
             builder: (_) {
-              return ScheduleBottomSheet();
+              return ScheduleBottomSheet(
+                SelectedDate: selected,
+              );
             },
           );
+          setState(() {
+            _events = {
+              ..._events,
+              resp.date : [
+                if (_events.containsKey(resp.date))
+                  ... _events[resp.date]!,
+                resp,
+              ]
+            };
+          });
         },
         backgroundColor: primaryColor,
         child: Icon(Icons.add, color: Colors.white),

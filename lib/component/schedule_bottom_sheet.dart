@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/component/text_field.dart';
 import 'package:myapp/const/colors.dart';
+import 'package:myapp/model/schedule.dart';
 
 class ScheduleBottomSheet extends StatefulWidget {
-  const ScheduleBottomSheet({super.key});
+  final DateTime SelectedDate;
+
+  const ScheduleBottomSheet({
+    required this.SelectedDate,
+    super.key
+  });
 
   @override
   State<ScheduleBottomSheet> createState() => _ScheduleBottomSheetState();
@@ -11,6 +17,9 @@ class ScheduleBottomSheet extends StatefulWidget {
 
 class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   Color SelectedColor = categoryColor[0];
+  int? StartTime;
+  int? EndTime;
+  String? Content;
   final GlobalKey<FormState> formkey = GlobalKey();
 
   @override
@@ -57,7 +66,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   }
 
   void onStartSaved(String? val) {
-    print(val);
+    StartTime = int.parse(val!);
   }
 
   String? onStartValidated(String? val) {
@@ -74,7 +83,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   }
 
   void onEndSaved(String? val) {
-    print(val);
+    EndTime = int.parse(val!);
   }
 
   String? onEndValidated(String? val) {
@@ -91,7 +100,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   }
 
   void onContentSaved(String? val) {
-    print(val);
+    Content = val;
   }
 
   String? onContentValidated(String? val) {
@@ -105,12 +114,21 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   }
 
   onSaved() {
-    setState(() {
-      final isValid = formkey.currentState?.validate();
-      if (isValid!){
-        formkey.currentState?.save();
-      }
-    });
+    final isValid = formkey.currentState?.validate();
+    if (isValid!) {
+      formkey.currentState?.save();
+      Navigator.of(context).pop(
+        Schedule(
+          id: 999,
+          startTime: StartTime!,
+          endTime: EndTime!,
+          date: widget.SelectedDate,
+          content: Content!,
+          settingTime: DateTime.now(),
+          categoryColor: SelectedColor,
+        ),
+      );
+    }
   }
 }
 
@@ -156,11 +174,7 @@ class _Content extends StatelessWidget {
   final FormFieldSetter<String> onSaved;
   final FormFieldValidator<String> onValidated;
 
-  const _Content({
-    required this.onSaved,
-    required this.onValidated,
-    super.key
-  });
+  const _Content({required this.onSaved, required this.onValidated, super.key});
 
   @override
   Widget build(BuildContext context) {
