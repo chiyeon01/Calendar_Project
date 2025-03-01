@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
 
-final primaryColor = Colors.grey[300];
-final List<Color> categoryColor = [
-  Colors.red,
-  Colors.orange,
-  Colors.yellow,
-  Colors.green,
-  Colors.blue,
-  Color(0xFF0E0F37),
-  Colors.purple,
+/// category color 변수 저장하는 파일
+
+final List<String> CategoryColor = [
+  'FF000d',
+  'FF6f00',
+  '00fff7',
+  '020266',
+  '00a2ff',
+  'ff9cf7',
+  '9900ff',
 ];
+
+final String PrimaryColor = '4287f5';
